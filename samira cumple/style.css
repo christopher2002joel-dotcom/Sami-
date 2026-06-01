@@ -1,0 +1,260 @@
+/* =========================================
+   RESET Y GLOBALES + FONDO TOTAL FIXED
+========================================= */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { 
+    width:100%; 
+    height:100%; 
+    overflow:hidden; 
+    font-family:'Poppins', sans-serif; 
+    background-color: #050816;
+    background-image: url('assets/fondo.jpg'); /* Forzado directamente en el body */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:white; 
+}
+
+#galaxy-background {
+    position: fixed; inset: 0; z-index: -3;
+    background: transparent; /* Desactivado para no estorbar al body */
+}
+
+#stars { position:fixed; inset:0; z-index:-2; overflow:hidden; }
+#stars::before {
+    content:""; position:absolute; width:200%; height:200%;
+    background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+                      radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 60px 60px, 100px 100px; background-position: 0 0, 30px 30px;
+    opacity: 0.3; animation: starMove 150s linear infinite;
+}
+@keyframes starMove { from { transform:translateY(0); } to { transform:translateY(-500px); } }
+
+/* =========================================
+   PARTÍCULAS Y ESTRELLAS FUGACES
+========================================= */
+#particles-container { position:fixed; inset:0; z-index:-1; pointer-events:none; }
+.particle {
+    position:absolute; bottom:-10px; width:4px; height:4px;
+    background:#fff; border-radius:50%; box-shadow:0 0 10px #ff4da6, 0 0 20px #9c6dff;
+    opacity:0; animation: floatUp linear forwards;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+#shooting-stars-container { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.shooting-star {
+    position:absolute; width:120px; height:2px;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    transform: rotate(-45deg); opacity:0; animation: shootingStarAnim 1.5s ease-out forwards;
+}
+.shooting-star::before {
+    content:''; position:absolute; top:-2px; left:0; width:4px; height:4px;
+    background:#fff; border-radius:50%; box-shadow:0 0 15px 5px #fff;
+}
+@keyframes shootingStarAnim {
+    0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 1; }
+    100% { transform: translateX(-800px) translateY(800px) rotate(-45deg); opacity: 0; }
+}
+
+#flash-overlay { position:fixed; inset:0; background:#fff; opacity:0; pointer-events:none; z-index:9999; transition: opacity 0.8s ease; }
+.flash-active { opacity: 1 !important; }
+
+/* =========================================
+   PANTALLAS Y CONTENEDORES
+========================================= */
+.screen {
+    position:absolute; inset:0; display:none; justify-content:center; align-items:center;
+    padding:30px; text-align:center; overflow-y:auto; overflow-x:hidden;
+}
+.screen.active { display:flex; animation: cinematicFadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+@keyframes cinematicFadeIn {
+    0% { opacity: 0; transform: scale(0.95) translateY(20px); filter: blur(5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+.content { width:100%; max-width:900px; margin:auto; position: relative; z-index: 10; }
+h1 { font-size:3.5rem; margin-bottom:15px; }
+h2 { font-size:2.2rem; margin-bottom:25px; color:#ffd166; letter-spacing: 1px; }
+.subtitle { font-size:1.2rem; line-height:1.8; margin-bottom:30px; opacity: 0.9; }
+.glow-text { text-shadow: 0 0 15px rgba(255, 77, 166, 0.6); }
+.highlight-text { font-size: 1.6rem; color: #ff4da6; font-weight: bold; margin-top: 15px; }
+.hidden { display: none !important; }
+
+/* =========================================
+   BOTONES PREMIUM
+========================================= */
+.premium-btn {
+    margin-top:25px; border:none; padding:15px 40px; border-radius:50px; cursor:pointer;
+    font-size:1.1rem; font-weight:600; font-family: 'Poppins', sans-serif; color:white;
+    background: linear-gradient(135deg, #ff4da6, #9c6dff);
+    box-shadow: 0 8px 25px rgba(255,77,166,0.4); transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.premium-btn::after {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(45deg) translateX(-100%); transition: all 0.6s ease;
+}
+.premium-btn:hover { transform:translateY(-5px); box-shadow: 0 12px 30px rgba(255,77,166,0.7); }
+.premium-btn:hover::after { transform: rotate(45deg) translateX(100%); }
+
+.ghost-btn { background: transparent; border: 2px solid #ff4da6; box-shadow: none; }
+.ghost-btn:hover { background: rgba(255,77,166,0.1); box-shadow: 0 0 15px rgba(255,77,166,0.3); }
+
+/* =========================================
+   CAJAS GLASSMORPHISM
+========================================= */
+.glass-box {
+    background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08); border-top: 1px solid rgba(255,255,255,0.2);
+    border-left: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 35px;
+    line-height: 1.8; margin: auto; max-width: 800px; box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+.premium-glass { border-radius: 8px; background: rgba(20, 25, 45, 0.45); box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1); }
+
+/* =========================================
+   TIMELINE
+========================================= */
+.timeline-container {
+    display:flex; flex-direction:column; gap:25px; max-width:650px; margin:20px auto;
+    position:relative; padding-left: 30px; border-left: 2px solid rgba(156, 109, 255, 0.4); text-align: left;
+}
+.timeline-step {
+    opacity: 0; transform: translateX(-30px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);
+}
+.timeline-step::before {
+    content: ''; position: absolute; left: -38px; top: 25px; width: 14px; height: 14px;
+    border-radius: 50%; background: #ff4da6; box-shadow: 0 0 15px #ff4da6, 0 0 5px #fff;
+}
+.timeline-step.visible { opacity: 1; transform: translateX(0); }
+.timeline-date { font-weight: bold; color: #ffd166; font-size: 1.1rem; margin-bottom: 8px;}
+.timeline-text { font-size: 1.05rem; line-height: 1.6; color: #e0e0e0; }
+
+/* =========================================
+   POLAROID PROFESIONAL + ANIMACIÓN LATIDO
+========================================= */
+.polaroid {
+    background: #fcfcfc; padding: 15px 15px 50px; width: 320px; margin: auto;
+    border-radius: 4px; transform: rotate(-3deg); transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.5);
+}
+.polaroid:hover { transform: rotate(0deg) scale(1.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+.polaroid-image-container { overflow: hidden; background: #000; }
+.polaroid img { width: 100%; display: block; filter: contrast(1.1) brightness(0.95); opacity: 0.95; transition: opacity 0.3s; }
+.polaroid:hover img { opacity: 1; }
+
+.handwriting { 
+    font-family: 'Caveat', cursive; 
+    font-size: 1.8rem; 
+    color: #222; 
+    margin-top: 20px; 
+    font-weight: 600; 
+    display: inline-block;
+    animation: heartbeatText 2s infinite ease-in-out; /* Nueva animación con más vida */
+}
+
+@keyframes heartbeatText {
+    0%, 100% { transform: scale(1); color: #222; }
+    50% { transform: scale(1.08); color: #ff4da6; text-shadow: 0 0 8px rgba(255, 77, 166, 0.4); }
+}
+
+/* =========================================
+   TARJETAS 3D PREMIUM Y LEVITACIÓN
+========================================= */
+.cards-container { 
+    display:flex; justify-content:center; flex-wrap:wrap; gap:20px; 
+    max-height: 55vh; overflow-y: auto; padding: 30px 10px; perspective: 1200px; 
+}
+.cards-container::-webkit-scrollbar { width: 8px; }
+.cards-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+.cards-container::-webkit-scrollbar-thumb { background: rgba(255,77,166,0.5); border-radius: 10px; }
+
+.flip-card { width:180px; height:180px; perspective:1000px; cursor: pointer; transition: transform 0.4s ease; }
+.flip-card:hover { transform: translateY(-10px); }
+
+.flip-inner { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.flip-card:hover .flip-inner { transform:rotateY(180deg); }
+
+.flip-front, .flip-back {
+    position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:15px;
+    display:flex; justify-content:center; align-items:center; padding:20px; font-size: 1.1rem; font-weight: 600;
+}
+.flip-front { background:linear-gradient(135deg, rgba(255,77,166,0.9), rgba(156,109,255,0.9)); box-shadow: 0 10px 25px rgba(255, 77, 166, 0.4); border: 1px solid rgba(255,255,255,0.4); }
+.flip-back { 
+    background: rgba(20, 25, 45, 0.95); transform:rotateY(180deg); 
+    border: 1px solid #ff4da6; box-shadow: 0 0 20px rgba(255, 77, 166, 0.2);
+    color: #e0e0e0; font-size: 0.9rem; text-align: center; font-weight: 400; line-height: 1.5;
+}
+.cards-footer { margin-top: 25px; font-size: 1.1rem; font-style: italic; color: #ffd166; }
+
+/* =========================================
+   CARTA ELEGANTE
+========================================= */
+.letter-screen .letter-box {
+    max-width: 800px; text-align: left; font-family: 'Lora', serif; font-size: 1.15rem;
+    line-height: 2.2; border-left: 4px solid #ff4da6; padding: 40px 50px;
+}
+.letter-box p { margin-bottom: 15px; }
+.signature { margin-top:40px !important; text-align:right; font-family: 'Caveat', cursive; font-size: 2.5rem; color: #ff4da6; line-height: 1; }
+
+/* =========================================
+   AUDIO & ESTRELLAS ANIMADAS
+========================================= */
+.premium-audio { width: 100%; max-width: 500px; margin-top: 20px; border-radius: 50px; outline: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+.stars-animation-container {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
+    max-width: 450px; margin: 50px auto; height: 80px; position: relative;
+}
+.star-item { font-size: 1.6rem; font-weight: bold; position: absolute; transition: all 3.5s cubic-bezier(0.4, 0, 0.2, 1); text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.left-star { left: 0; }
+.right-star { right: 0; }
+.star-item.merge-center-left { left: 50%; transform: translateX(-105%); }
+.star-item.merge-center-right { right: 50%; transform: translateX(105%); }
+.merged-star {
+    font-size: 2rem; font-weight: bold; width: 100%; text-align: center; color: #ffd166;
+    animation: majesticPopIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes majesticPopIn {
+    0% { transform: scale(0.5); opacity: 0; filter: blur(5px); }
+    50% { transform: scale(1.1); opacity: 1; filter: blur(0); }
+    100% { transform: scale(1); opacity: 1; text-shadow: 0 0 30px #ffd166, 0 0 10px #fff; }
+}
+
+/* =========================================
+   CONFETI
+========================================= */
+#confetti-container { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index: 1000; }
+.confetti {
+    position:absolute; width:12px; height:12px;
+    animation:premiumFall linear forwards; opacity: 0;
+}
+.confetti.circle { border-radius: 50%; }
+.confetti.ribbon { width: 6px; height: 18px; border-radius: 3px; }
+@keyframes premiumFall {
+    0% { transform: translateY(-50px) rotate(0deg) scale(0); opacity: 1; }
+    10% { transform: translateY(10vh) rotate(90deg) scale(1); }
+    100% { transform: translateY(110vh) rotate(720deg) scale(0.8); opacity: 0; }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media(max-width:768px) {
+    h1 {font-size:2.4rem;}
+    h2 {font-size:1.8rem;}
+    .polaroid {width:260px;}
+    .flip-card {width:145px; height:145px;}
+    .flip-front, .flip-back { font-size: 0.85rem; padding: 15px; }
+    .letter-screen .letter-box { padding: 25px; font-size: 1rem; }
+    .stars-animation-container { max-width: 300px; }
+    .timeline-container { padding-left: 20px; gap: 15px; }
+    .timeline-step { padding: 15px; }
+    .timeline-step::before { left: -28px; width: 12px; height: 12px; }
+}

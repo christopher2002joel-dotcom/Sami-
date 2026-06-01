@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Samira ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="galaxy-background"></div>
+    <div id="stars"></div>
+    <div id="particles-container"></div>
+    <div id="shooting-stars-container"></div>
+    <div id="flash-overlay"></div>
+
+    <audio id="birthdayMusic" loop>
+        <source src="assets/cumpleanos.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="coldplayMusic" loop>
+        <source src="assets/till-kingdom-come.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="screen active" id="screen1">
+        <div class="content">
+            <h1 class="glow-text">Feliz Cumpleaños Samira ✨</h1>
+            <p class="subtitle">Hay personas que llegan por casualidad...<br><br>Y otras que terminan cambiando tu vida.</p>
+            <button class="premium-btn" onclick="startStory()">✨ Comenzar esta historia</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen2">
+        <div class="content">
+            <h2>Nuestra historia comenzó aquí ❤️</h2>
+            
+            <div class="polaroid">
+                <div class="polaroid-image-container">
+                    <img src="assets/samira.jpg" alt="Samira">
+                </div>
+                <p class="handwriting">Nuestro primer cumpleaños juntos ❤️</p>
+            </div>
+
+            <div class="glass-box premium-glass" style="margin-top: 30px; padding: 25px; font-size: 1.05rem;">
+                <p>Yo no solía recordar fechas ni celebrar mi cumpleaños; para mí era solo un día más en el calendario.</p>
+                <p>Hasta que apareciste y cambiaste todas mis reglas. Contigo fue la primera vez que sentí la emoción real de festejarlo.</p>
+                <p>Jamás pensé que recordaría un día con tanta alegría, pero ahora entiendo por qué...</p>
+                <p style="margin-top: 15px; color: #ff4da6; font-weight: 600; font-size: 1.15rem;">Tú eres la razón que lo hizo especial. ✨</p>
+            </div>
+
+            <button class="premium-btn" onclick="nextScreen(3)">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen3">
+        <div class="content">
+            <h2>Esperando este día ✨</h2>
+            <div class="glass-box counter-box">
+                <p>El tiempo que faltaba para celebrar tu vida:</p>
+                <div id="birthdayCountdown" class="highlight-text glow-text">Calculando...</div>
+            </div>
+            <button class="premium-btn" onclick="nextScreen(4)">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen4">
+        <div class="content">
+            <h2>Nuestra Historia</h2>
+            <div class="timeline-container" id="cinematicTimeline">
+                </div>
+            <button class="premium-btn hidden" id="btnTimelineNext" onclick="nextScreen(5)">Continuar</button>
+            <button class="premium-btn ghost-btn" id="btnTimelineStep" onclick="advanceTimeline()">Siguiente recuerdo...</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen5">
+        <div class="content">
+            <h2>Cosas que admiro de ti ✨</h2>
+            <div class="cards-container" id="cardsGrid">
+                </div>
+            <p class="cards-footer glow-text">Existen muchísimas más, pero no cabrían todas en estas notas...</p>
+            <button class="premium-btn" onclick="nextScreen(6)">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen6">
+        <div class="content letter-screen">
+            <h2>Una carta para ti 💌</h2>
+            <div class="letter-box premium-glass">
+                <p>Samira,</p>
+                <p>Cuando te conocí jamás imaginé que terminarías ocupando un lugar tan importante en mi vida.</p>
+                <p>Lo que comenzó con una conversación improvisada —y un susto que todavía recuerdas— terminó convirtiéndose en una de las mejores cosas que me han pasado.</p>
+                <p>Con el tiempo descubrí a una mujer fuerte, valiente y capaz de levantarse incluso cuando las circunstancias no son fáciles.</p>
+                <p>Admiro tu dedicación, tu manera de luchar por tus metas y la forma en que afrontas cada desafío.</p>
+                <p>Gracias por ayudarme a mejorar mi propia vida. Gracias por inspirarme a ser una mejor persona. Gracias por ser exactamente quien eres.</p>
+                <p>Feliz cumpleaños, Samira.</p>
+                <p class="signature">Con cariño,<br>Chris ❤️</p>
+            </div>
+            <button class="premium-btn" onclick="nextScreen(7)">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen7">
+        <div class="content">
+            <h2>15 de Marzo de 2026 ❤️</h2>
+            <div class="glass-box premium-glass">
+                <p>Hay fechas que simplemente no se olvidan.</p>
+                <p>Aquella noche ninguno de los dos esperaba llegar a ese momento. Hubo nervios, silencio, dudas... y hubo un beso.</p>
+                <p>Aunque siendo sinceros... parecíamos dos novatos. 😂</p>
+                <p>Tal vez justamente eso fue lo que lo hizo tan especial.</p>
+            </div>
+            <div class="counter-box premium-glass" style="margin-top: 20px;">
+                <h3>Tiempo desde aquella noche</h3>
+                <div id="kissCounter" class="highlight-text glow-text">Calculando...</div>
+            </div>
+            <button class="premium-btn" onclick="nextScreen(8)">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen8">
+        <div class="content">
+            <h2>17 de Marzo de 2026 🎙️</h2>
+            <div class="glass-box premium-glass">
+                <p>Algunas palabras se escuchan.</p>
+                <p>Otras se quedan para siempre.</p>
+                <p>Este es uno de esos recuerdos que vale la pena guardar.</p>
+            </div>
+            <audio controls class="special-audio premium-audio">
+                <source src="assets/audio-17-marzo.mp3" type="audio/mpeg">
+            </audio>
+            <br>
+            <button class="premium-btn" onclick="goToScreen9()">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen9">
+        <div class="content">
+            <h2>Till Kingdom Come 🎵</h2>
+            <div class="glass-box premium-glass">
+                <p>Hay canciones que simplemente se escuchan.</p>
+                <p>Y otras que hacen pensar en alguien.</p>
+                <p>Esta quiero dedicártela.</p>
+            </div>
+            <button class="premium-btn" onclick="nextScreen(10)">Continuar</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen10">
+        <div class="content">
+            <h2>02 de Junio 🎂</h2>
+            <div class="glass-box premium-glass">
+                <p>Entre todos los días del calendario...</p>
+                <p>Teníamos que compartir exactamente este.</p>
+                <p>Y aunque las probabilidades eran mínimas...</p>
+                <p>Terminamos coincidiendo en mucho más que una fecha.</p>
+            </div>
+            
+            <div class="stars-animation-container" id="starsAnimationBox">
+                <div class="star-item left-star" id="starSamira">⭐ Samira</div>
+                <div class="star-item right-star" id="starChris">⭐ Chris</div>
+                <div class="merged-star hidden" id="mergedStar">⭐ Samira ❤️ Chris ⭐</div>
+            </div>
+
+            <button class="premium-btn hidden" id="btnToFinal" onclick="nextScreen(11)">Un último detalle...</button>
+        </div>
+    </section>
+
+    <section class="screen" id="screen11">
+        <div class="content final-content">
+            <h2 class="glow-text">✨ Gracias por llegar hasta aquí ✨</h2>
+            <div class="final-message glass-box premium-glass">
+                <p>Gracias por formar parte de una historia que todavía se sigue escribiendo.</p>
+                <p>Gracias por todos los momentos compartidos.</p>
+                <p>Gracias por ser una de las personas más maravillosas que he tenido la fortuna de conocer.</p>
+                <p>Feliz cumpleaños, Samira.</p>
+                <p class="signature">Con cariño,<br>Chris ❤️</p>
+            </div>
+            <button class="premium-btn restart-btn" onclick="restartExperience()">✨ Vivir nuevamente nuestra historia ✨</button>
+        </div>
+    </section>
+
+    <div id="confetti-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
